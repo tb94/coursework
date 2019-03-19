@@ -1,0 +1,80 @@
+#!/bin/bash
+
+dir=/home/hopper/berezin/Data
+psef=/home/hopper/berezin/Data/psef
+passwd=/home/hopper/berezin/Data/passwd
+etcList=/home/hopper/berezin/Data/etcList
+etcSlist=/home/hopper/berezin/Data/etcSlist
+
+function sdiffit()
+{
+    diff sout.$1 /home/hopper/berezin/Sed/sout.$1
+}
+
+#1
+sed 's/^root/Master' $psef > sout.01
+
+#2
+sed 's#/home/hopper#/system/tron' $passwd > sout.02
+
+#3
+sed '/*d[:]/a\
+    :daemon' $passwd > sout.03
+
+#4
+sed '/^*/a\
+    $1' $passwd > sout.04
+
+#5
+sed 's/root/wheel/2' $etcList > sout.05
+
+#6
+sed 's/*\{24\}/\{4\}' $etcSlist > sout.06
+
+#7
+sed '/^*\{4-6\}/n' $passwd > sout.07
+
+#8
+function NoSpace()
+{
+    echo $* | grep > /dev/null 2>&1
+
+    # I have no idea what this question wants me to do with the -v option
+    
+    return $?
+}
+
+    echo -c "Input a string with no spaces or type quit to quit : " 
+    read ans
+
+    while [ "$ans" != quit ]
+    do
+        if NoSpace "$ans"
+        then
+            :
+            # do what ever you want to do with the string.
+
+        else
+            echo "The data you've given has a space in it."
+
+        fi
+        
+        echo -c "Input a string with no spaces or type quit to quit : " 
+        read ans
+    done 
+
+#9
+function IsDigits
+{
+    echo $* | grep > /dev/null 2>&1
+
+    # Still no idea how this is supposed to look for digits
+
+}
+
+#10
+function IsFloat
+{
+    -e[[:digit:]]+\./ -e[[:digit:]]*\.
+    #something like this
+}

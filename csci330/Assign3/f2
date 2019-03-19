@@ -1,0 +1,4 @@
+#!/bin/bash
+    echo $0
+    rc=`echo $0 | cut -c4`
+    exit $rc
