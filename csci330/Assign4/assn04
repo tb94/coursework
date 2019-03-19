@@ -1,0 +1,107 @@
+#!/bin/bash
+
+################
+#    Part A    #
+################
+
+#1 write alieas tstamp that returns current time as a string of digits
+#  choose an option set that generates a single string of digits with no whitespace (yyyy, ddd, 24h, mm, ss)
+    alias tstamp="date +%Y-%j-%H-%M-%S"
+
+#2 confirm regular file
+    alias fchk="test -f"
+
+#3 confirm symbolic file
+    alias schk="test -h"
+
+#4 confirm directory file
+    alias dchk="test -d"
+
+#5 confirm character special file
+    alias cchk="test -c"
+
+#6 confirm block special file
+    alias bchk="test -b"
+
+#7 confirm readable file
+    alias rchk="test -r"
+
+#8 confirm file exists
+    alias echk="test -e"
+
+
+################
+#    Part B    #
+################
+
+#1
+findit() {
+    if test -n $1
+    then
+        if test -d $1
+        then
+            find $1 $2
+        else
+            echo "Error: $1 is not a directory"
+        fi
+    
+    else
+        echo "Error: missing argument"
+    fi
+}
+
+#2
+what() 
+{
+    if schk $1
+    then
+        echo "$1 is a symbolic link"
+    fi
+    if dchk $1
+    then
+        echo "$1 is a directory"
+   
+    elif cchk $1
+    then
+        echo "$1 is a character special"
+    
+    elif bchk $1
+    then
+        echo "$1 is a block special"
+    
+    elif rchk $1
+    then
+        echo "$1 is a regular file"
+    
+    elif echk $1
+    then
+        echo "$1 file exists but is unrecognized"
+    
+    else
+        echo "$1 does not exist"
+    fi
+}
+
+#3
+junkit()
+{
+    if test -a -o $HOME/junk
+    then
+        if rchk $1
+        then
+            if test `ls -l | cut -d " " -f 2` -gt 1
+           then
+               echo "link count is > 1"
+           fi
+           
+           mv "$1" $HOME/junk/"$1".`tstamp`
+       else
+           echo "$1 is not a regular file"
+       fi
+    else
+        echo "junk inaccessible"
+        exit
+    fi
+}
+
+

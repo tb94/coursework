@@ -1,0 +1,170 @@
+#!/bin/bash
+
+data="/home/hopper/berezin/Data"
+
+#a. numbers all of the lines printed out.
+##cat -n $data/data02.txt
+
+#b. numbers the lines printed out BUT skips numbering blank lines.
+##cat -b $data/data02.txt
+
+#c. indicate where tabs are with ^I and where formfeeds are with ^L.
+##cat -T $data/data02.txt
+
+#d. prints a $ at the end of the text line.
+##cat -E $data/data02.txt
+
+
+#a. ignores the case of the characters.
+## diff -i $data/data02.dif1 $data/data02.dif2
+
+#b. ignore all blanks.
+## diff -B $data/data02.dif1 $data/data02.dif2
+
+#c. ignores trailing blanks and treats other blanks as being equal.
+## diff -Z $data/data02.dif1 $data/data02.dif2
+
+#d. Produces a script that can be used by the ed editor to recreate the second file from the first file.
+## diff -e $data/data02.dif1 $data/data02.dif2
+
+
+#a. Find the option that suppresses the printing of a user's .plan file.
+## finger -p berezin berezin@hopper.cs.niu.edu
+
+#b.Find the option that will make it show the more detailed display
+## finger -l berezin berezin@hopper.cs.niu.edu
+
+
+#a. suppress error messages about non-existent or unreadable files.
+## grep -s assign $data/data02ps.txt
+## grep -s assign $data/data02u.txt
+## grep -s assign $data/data02non.txt
+
+#b. does not print any output.
+## grep -q assign $data/data02u.txt
+
+#c. count the number of lines that contain the string assign
+## grep -n assign $data/data02ps.txt
+
+#d. ignore the case of the string being searched for.
+## grep -i assign $data/data02ps.txt
+
+#e. print all lines that do NOT contain the regular expression.
+## grep -v assign $data/data02ps.txt
+
+#f. print just the filename of the file containing the string
+## grep -H assign $data/data02*
+
+
+#a. specify by line count where to start printing from. Display lines starting from the 3rd line from the beginning.
+## tail -n +3 $data/taild
+
+#b. specify by character count where to start printing from. Print from the 13th character from the end. Count the number of characters in the output
+## 
+
+#c. specify by character count where to start printing from. Print from the 13th character from the beginning
+## tail -c +13 $data/taild
+
+
+#a. forces the printing of non-printable characters in a filename as c-style \char or 3 digit octal value preceded by a backslash
+## ls -b $data/d2
+
+#b. allows you to specify a directory name and displays the permissions of the directory rather than the permissions of contents of that directory.
+## ls -Z $data/d2
+
+#c. puts special symbols after directories, executables and linked filenames when listing them.
+## ls -F $data/d2
+
+#d. displays the inode number next to the filename.
+## ls -i $data/d2
+
+
+#a. checks to see if the file is already sorted
+## sort -c $data/data02s.txt; sort -c $data/data02ss.txt
+
+#b. specifies the name to send the output to instead of to standard out. 
+## sort -o mysort $data/data02s.txt 
+
+#c. causes lower case letters to be listed together with the upper case letters.
+## sort -f $data/data02s.txt
+
+#d. sort on the second word on the line. Use the data02ps.txt file.
+## 
+
+#e. sort on the second word on the line but also sort so is numerically corect, 1-10 followed by 11-99, followed by 100-999, etc.
+##
+
+
+#a. displays the bytes of a file in character format.
+## od -t c $data/data02h.txt
+
+#b. displays the bytes of a file as hexidecimal numbers.
+## od -t x2 $data/data02h.txt
+
+#c. displays the bytes of a file as decimal (base ten) numbers.
+## od -t d2 $data/data02h.txt
+
+
+#a. lists text in three columns with NO header info. This will require 2 options.
+## ls /bin | pr -t -3
+
+#b. lists line with a three digit wide line count in front and seperate line count from line contents with a > Be careful to quote the >
+##
+
+
+#a. delete the # (octhorpe). You will have to escape quote (backslash) the # because it is also a comment marker
+## tr -d /#/ < /etc/profile
+
+#b. translate lower case a through f to upper case B through G.
+## tr a-f B-G
+
+
+#a. get the 3rd through the 7th character columns from data02ps.txt.
+## cut -c 3-7 $data/data02ps.txt
+
+#b. get the sixthfield (word) from the file /etc/passwd. Use colon : as a delimiter. You may have to quote the colon.
+## cut -f 6 -d ":"
+
+
+#a. prints the current year (4 digit version), day of the year, hour, and minute. Choose the options that produce zero padded numbers
+## date %Y %j %I %M %0
+
+#b. prints only the hour dataa02.txt was last modified.
+## date -r %I
+
+
+#a. lists all processes that you are running. Use the variable $USER to get your id.
+## ps -U $USER
+
+#b. lists every single process running on the system with a full listing.
+## ps -A -f
+
+#c. lists only processes not related to a terminal.
+## 
+
+
+#a. lists all of the current terminal settings.
+## stty -a
+
+#b. resets the terminal to a reasonable set of values.
+## 
+
+#c. reset the terminal to lower case
+##
+
+
+#a. splits file into files of 7 seven lines.
+## split -l 7 $data/data02.txt
+
+#b. splits file into files where the lines are at most 10 characters long. If end of line encountered before 10th character. Start next line in new file.
+##  split -C 10 $data/data02.txt
+
+#c. splits file into 3 files.
+## 
+
+#d. splits file into files of 12000 bytes. Use the data02ps.txt file, use the size modifier to specify thousands.
+## split -b 12KB $data/data02ps.txt
+
+
+
+
