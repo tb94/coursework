@@ -2,3 +2,17 @@ bin
 fnTest
 junk
 sent
+.DS_Store
+.Xauthority
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.lesshst
+.mysql_history
+.nano
+.nanorc
+.profile
+.vim
+.viminfo
+.vimrc
